@@ -9,27 +9,27 @@ The project enforces a strict separation of concerns across data ingestion, feat
 ```text
 readmission-risk-predictor/            
 ├── data/
-│   └── *.csv                # Source clinical datasets (Git-ignored)
+│   └── *.csv                
 ├── models/
-│   ├── best_model.pkl       # Serialized Stacking Classifier pipeline binary
-│   ├── best_threshold.pkl   # Precision-Recall optimized decision threshold (0.35)
-│   └── feature_cols.pkl     # Preserved deterministic feature schema
+│   ├── best_model.pkl       
+│   ├── best_threshold.pkl   
+│   └── feature_cols.pkl     
 ├── notebooks/
-│   ├── 01_eda.ipynb         # Statistical profile exploration & distribution analysis
-│   └── 02_shap_explainability.ipynb # Global attribution & calibration diagnostics
+│   ├── 01_eda.ipynb         
+│   └── 02_shap_explainability.ipynb 
 ├── src/
-│   ├── __init__.py          # Module initialization root
-│   ├── data_pipeline.py     # Deterministic merge and imputation engine
-│   ├── features.py          # Vectorized feature transformations & encoding
-│   └── train.py             # Model training, validation, and serialization
-├── .gitignore               # Excludes virtual environments and protected data
-└── requirements.txt         # Version-locked dependency manifesto
+│   ├── __init__.py          
+│   ├── data_pipeline.py     
+│   ├── features.py          
+│   └── train.py             
+├── .gitignore               
+└── requirements.txt         
 ```
 
 ### 2.1 Core Subsystems
-* **Data Pipeline (`src/data_pipeline.py`):** Handles multi-source data ingestion (demographics, administrative metrics, and diagnostics). Implements memory-optimized joining logic to eliminate index-alignment blowout on high-volume datasets.
-* **Feature Engineering (`src/features.py`):** Computes domain-specific interaction terms (e.g., ICU utilization crossed with length of stay, comorbidity burdens stratified by age groups) and scales continuous vectors cleanly.
-* **Training Pipeline (`src/train.py`):** Trains and serializes the machine learning stack, utilizing dynamic relative paths to compute the project root across heterogeneous execution environments.
+* **Data Pipeline (`src/data_pipeline.py`):** Handles multi-source data ingestion (demographics, administrative metrics, and diagnostics). Implements memory-optimized joining logic to eliminate blowout on high-volume datasets.
+* **Feature Engineering (`src/features.py`):** Computes domain-specific interaction terms (e.g., ICU utilization crossed with length of stay, comorbidity burdens stratified by age groups) and scales vectors cleanly.
+* **Training Pipeline (`src/train.py`):** Trains and serializes the machine learning stack, utilizing dynamic relative paths to compute the project root across execution environments.
 
 ## 3. Machine Learning Architecture
 To handle complex non-linear clinical relationships while maintaining robust classification boundaries, the system deploys a Stacked Ensemble Classifier:
