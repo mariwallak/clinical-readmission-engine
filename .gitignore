@@ -1,0 +1,12 @@
+# Environments
+.venv1/
+.venv/
+__pycache__/
+
+# IDE Files
+.idea/
+.DS_Store
+
+# Datasets and Models
+data/*.csv
+models/*.pkl
