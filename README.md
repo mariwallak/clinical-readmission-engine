@@ -56,6 +56,7 @@ pip install -r requirements.txt
 ```
 
 ### 4.3 Data Directory Configuration
+The source data for this project is derived from the open-source [Patient Records (100k Patients)](https://www.kaggle.com/datasets/sergionefedov/patient-records-100k-patients-15-conditions) dataset on Kaggle.
 Populate the local data directory with the following CSV source artifacts prior to execution:
 * data/patients.csv
 * data/diagnoses.csv
